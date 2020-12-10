@@ -1,3 +1,6 @@
+# Reference (Notion)
+https://www.notion.so/Barloon-bbe264ec5a974745a9e1ee2b370e00b3
+
 # Notion Blog
 
 This is an example Next.js project that shows Next.js' upcoming SSG (static-site generation) support using Notion's **private** API for a backend.
