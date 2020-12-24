@@ -6,13 +6,13 @@ import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
 import {
   BLOG_INDEX_ID,
-  OTHER_INDEX_ID,
+  PAGE_INDEX_ID,
   BLOG_INDEX_CACHE,
 } from './server-constants'
 
 const types = {
   blog: BLOG_INDEX_ID,
-  other: OTHER_INDEX_ID,
+  page: PAGE_INDEX_ID,
 } as const
 
 export default async function getBlogIndex({
@@ -59,7 +59,7 @@ export default async function getBlogIndex({
         console.log(`Successfully created table in Notion`)
       } catch (err) {
         console.error(
-          `Auto creating table failed, make sure you created a blank page and site the id with BLOG_INDEX_ID or OTHER_INDEX_ID in your environment`,
+          `Auto creating table failed, make sure you created a blank page and site the id with BLOG_INDEX_ID or PAGE_INDEX_ID in your environment`,
           err
         )
       }
