@@ -1,31 +1,31 @@
 import Link from 'next/link'
 import fetch from 'node-fetch'
 import { useRouter } from 'next/router'
-import Header from '../../components/header'
-import Heading from '../../components/heading'
-import components from '../../components/dynamic'
+import Header from '../components/header'
+import Heading from '../components/heading'
+import components from '../components/dynamic'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
-import { textBlock } from '../../lib/notion/renderers'
-import getPageData from '../../lib/notion/getPageData'
+import blogStyles from '../styles/blog.module.css'
+import { textBlock } from '../lib/notion/renderers'
+import getPageData from '../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import getBlogIndex from '../lib/notion/getBlogIndex'
+import getNotionUsers from '../lib/notion/getNotionUsers'
+import { getBlogLink, getDateStr } from '../lib/blog-helpers'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
-  const postsTable = await getBlogIndex()
+  const postsTable = await getBlogIndex({ type: 'other' })
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
+  // viewed without preview mode then we just redirect to /
   if (!post || (post.Published !== 'Yes' && !preview)) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/',
         preview: false,
       },
       unstable_revalidate: 5,
@@ -70,13 +70,13 @@ export async function getStaticProps({ params: { slug }, preview }) {
 
 // Return our list of blog posts to prerender
 export async function getStaticPaths() {
-  const postsTable = await getBlogIndex()
+  const postsTable = await getBlogIndex({ type: 'other' })
   // we fallback for any unpublished posts to save build time
   // for actually published ones
   return {
     paths: Object.keys(postsTable)
       .filter(post => postsTable[post].Published === 'Yes')
-      .map(slug => getBlogLink({ slug })),
+      .map(slug => getBlogLink({ type: 'other', slug })),
     fallback: true,
   }
 }
