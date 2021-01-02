@@ -275,7 +275,7 @@ export default ({ post, redirect, preview }) => {
     // client navigation
     if (post && post.hasTweet) {
       if ((window as any)?.twttr?.widgets) {
-        ;(window as any).twttr.widgets.load()
+        (window as any).twttr.widgets.load()
       } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
         const script = document.createElement('script')
         script.async = true
