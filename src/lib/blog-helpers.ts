@@ -1,5 +1,9 @@
-export const getBlogLink = (slug: string) => {
-  return `/blog/${slug}`
+export const getBlogLink = ({ type = 'blog', slug }) => {
+  const types = {
+    blog: '/blog/',
+    page: '/',
+  } as const
+  return `${types[type]}${slug}`
 }
 
 export const getDateStr = date => {
