@@ -2,12 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 10px;
 }
 
 .logo {
   padding-bottom: 10px;
-  line-height: 0;
+  line-height: 1;
 }
 
 .navItems {
@@ -26,6 +25,7 @@
   display: inline-block;
   color: inherit;
   font-weight: bold;
+  padding-top: 10px;
   padding-bottom: 8px;
   border-bottom: 2px solid transparent;
 }
