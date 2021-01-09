@@ -6,9 +6,6 @@
 
   --bg: #fff;
   --fg: #000;
-  --accents-1: #111;
-  --accents-2: #333;
-  --accents-3: #888;
   --geist-foreground: #000;
 
   --radius: 8px;
@@ -295,7 +292,6 @@ h2 {
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: -0.02rem;
-  /* color: var(--accents-3); */
 }
 
 h3 {
