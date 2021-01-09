@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import BlogPost from '../components/blog-post'
+import Post from '../components/post'
 import getPageData from '../lib/notion/getPageData'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import getNotionUsers from '../lib/notion/getNotionUsers'
@@ -74,4 +74,4 @@ export async function getStaticPaths() {
   }
 }
 
-export default BlogPost
+export default Post

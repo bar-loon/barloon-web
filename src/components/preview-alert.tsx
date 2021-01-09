@@ -8,7 +8,7 @@ export default ({ slug = '' }) => (
       <b>Note:</b>
       Viewing in preview mode
       <Link href={`/api/clear-preview${slug && `?slug=${slug}`}`}>
-        <button className={styles.escapePreview}>Exit Preview</button>
+        <button className={styles.exitButton}>Exit Preview</button>
       </Link>
     </div>
   </div>
