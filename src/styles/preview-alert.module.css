@@ -1,9 +1,9 @@
-.previewAlertContainer {
+.root {
   display: flex;
   justify-content: center;
 }
 
-.previewAlert {
+.inner {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
