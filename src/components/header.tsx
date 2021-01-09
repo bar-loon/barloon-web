@@ -37,7 +37,9 @@ export default ({ className }) => {
           {navItems.map(({ label, page, pattern }) => (
             <li key={label}>
               <Link href={page}>
-                <a className={pattern.test(pathname) && 'is-active'}>{label}</a>
+                <a className={pattern.test(pathname) ? 'is-active' : undefined}>
+                  {label}
+                </a>
               </Link>
             </li>
           ))}
