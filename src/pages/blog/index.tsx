@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Header from '../../components/header'
+import Title from '../../components/title'
+import PreviewAlert from '../../components/preview-alert'
 
-import blogStyles from '../../styles/blog.module.css'
-import sharedStyles from '../../styles/shared.module.css'
+import styles from '../../styles/post-list.module.css'
 
 import {
   getBlogLink,
@@ -50,49 +50,37 @@ export async function getStaticProps({ preview }) {
 export default ({ posts = [], preview }) => {
   return (
     <>
-      <Header titlePre="Blog" />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        <h1>My Notion Blog</h1>
-        {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
-        )}
+      <Title title="Blog" />
+      {preview && <PreviewAlert />}
+      <div>
+        <h1>All Articles</h1>
+        {posts.length === 0 && <p>There are no posts yet</p>}
         {posts.map(post => {
           return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
+            <div className={styles.root} key={post.Slug}>
               <h3>
                 <Link href="/blog/[slug]" as={getBlogLink({ slug: post.Slug })}>
-                  <div className={blogStyles.titleContainer}>
+                  <div className={styles.title}>
                     {!post.Published && (
-                      <span className={blogStyles.draftBadge}>Draft</span>
+                      <span className={styles.draftBadge}>Draft</span>
                     )}
                     <a>{post.Page}</a>
                   </div>
                 </Link>
               </h3>
               {post.Authors.length > 0 && (
-                <div className="authors">By: {post.Authors.join(' ')}</div>
+                <p className={styles.authors}>By: {post.Authors.join(' ')}</p>
               )}
               {post.Date && (
-                <div className="posted">Posted: {getDateStr(post.Date)}</div>
+                <p className={styles.date}>Posted: {getDateStr(post.Date)}</p>
               )}
-              <p>
-                {(!post.preview || post.preview.length === 0) &&
-                  'No preview available'}
-                {(post.preview || []).map((block, idx) =>
-                  textBlock(block, true, `${post.Slug}${idx}`)
-                )}
-              </p>
+              {(post.preview || []).length > 0 && (
+                <p>
+                  {post.preview.map((block, idx) =>
+                    textBlock(block, true, `${post.Sluc}${idx}`)
+                  )}
+                </p>
+              )}
             </div>
           )
         })}

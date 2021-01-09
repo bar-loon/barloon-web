@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import Header from './header'
+import Title from './title'
+import PreviewAlert from './preview-alert'
 import Heading from './heading'
 import components from './dynamic'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../styles/blog.module.css'
+import styles from '../styles/post.module.css'
 import { textBlock } from '../lib/notion/renderers'
 import React, { CSSProperties, useEffect } from 'react'
 import { getDateStr } from '../lib/blog-helpers'
@@ -275,7 +275,7 @@ export default ({ post, redirect, preview }) => {
     // client navigation
     if (post && post.hasTweet) {
       if ((window as any)?.twttr?.widgets) {
-        (window as any).twttr.widgets.load()
+        ;(window as any).twttr.widgets.load()
       } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
         const script = document.createElement('script')
         script.async = true
@@ -300,7 +300,7 @@ export default ({ post, redirect, preview }) => {
   // loading one from fallback then  redirect back to the index
   if (!post) {
     return (
-      <div className={blogStyles.post}>
+      <div className={styles.root}>
         <p>
           Woops! didn't find that post, redirecting you back to the blog index
         </p>
@@ -310,28 +310,16 @@ export default ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className={blogStyles.post}>
-        <h1>{post.Page || ''}</h1>
+      <Title title={post.Page} />
+      {preview && <PreviewAlert slug={post.Slug} />}
+      <div className={styles.root}>
+        {post.Page && <h1>{post.Page}</h1>}
         {post.Authors.length > 0 && (
-          <div className="authors">By: {post.Authors.join(' ')}</div>
+          <p className={styles.authors}>By: {post.Authors.join(' ')}</p>
         )}
         {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
+          <p className={styles.date}>Posted: {getDateStr(post.Date)}</p>
         )}
-
-        <hr />
 
         {(!post.content || post.content.length === 0) && (
           <p>This post has no content</p>

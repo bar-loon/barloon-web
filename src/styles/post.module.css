@@ -1,0 +1,65 @@
+.root h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.root :global(h2) {
+  margin: 2.5rem 0 1.25rem 0;
+}
+
+/* .root :global(h2), */
+.root :global(h3) {
+  margin: 3rem 0 1.5rem 0;
+}
+
+.root :global(video),
+.root :global(img),
+.root :global(.asset-wrapper) {
+  /* margin: 2rem auto; */
+  /* box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3); */
+  max-width: 100%;
+  display: block;
+}
+
+.root :global(.tweet) {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.root :global(.callout) {
+  padding: 16px 16px 16px 12px;
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  background: rgba(235, 236, 237, 0.6);
+}
+
+.root :global(.callout .text) {
+  margin-left: 8px;
+}
+
+.root :global(.underline) {
+  text-decoration: underline;
+}
+
+.root :global(hr) {
+  margin-bottom: 2em;
+}
+
+.root :global(a + p) {
+  margin-top: 0;
+}
+
+.root .authors,
+.root .date {
+  margin: 0;
+}
+
+.authors,
+.date {
+  line-height: 1.25;
+  font-size: 0.875rem;
+}

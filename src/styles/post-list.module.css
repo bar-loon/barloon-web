@@ -1,0 +1,40 @@
+.root {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+}
+
+.root:last-child {
+  border-bottom: none;
+}
+
+.root h3 {
+  margin-bottom: 0;
+}
+
+.root .authors,
+.root .date {
+  margin: 0;
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.draftBadge {
+  border-radius: 16px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+  padding: 2px 7px;
+  margin-right: 6px;
+}
+
+.authors,
+.date {
+  line-height: 1.25;
+  font-size: 0.75rem;
+}
