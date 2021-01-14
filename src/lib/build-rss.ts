@@ -62,11 +62,11 @@ function createRSS(blogPosts = []) {
   return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>Barloon</title>
-    <subtitle>Blog</subtitle>
+    <subtitle>Article</subtitle>
     <link href="/atom" rel="self" type="application/rss+xml"/>
     <link href="/" />
     <updated>${NOW}</updated>
-    <id>Blog</id>${postsString}
+    <id>Article</id>${postsString}
   </feed>`
 }
 
