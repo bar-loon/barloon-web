@@ -12,13 +12,13 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
+  // viewed without preview mode then we just redirect to /article
   const isPublished = post.Published === 'Yes'
   if (!post || (!isPublished && !preview)) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/article',
         preview: false,
       },
       unstable_revalidate: 5,

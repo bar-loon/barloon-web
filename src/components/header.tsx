@@ -5,14 +5,14 @@ import { useRouter } from 'next/router'
 import styles from '../styles/header.module.css'
 
 const navItems: { label: string; page: string; pattern: RegExp }[] = [
-  { label: 'Home', page: '/', pattern: /^\/$/ },
-  { label: 'Blog', page: '/blog', pattern: /^\/blog/ },
+  { label: 'About', page: '/about', pattern: /^\/about$/ },
+  { label: 'Article', page: '/article', pattern: /^\/article/ },
 ]
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 
 export default ({ className }) => {
-  const { pathname } = useRouter()
+  const { asPath } = useRouter()
 
   return (
     <>
@@ -37,7 +37,7 @@ export default ({ className }) => {
           {navItems.map(({ label, page, pattern }) => (
             <li key={label}>
               <Link href={page}>
-                <a className={pattern.test(pathname) ? 'is-active' : undefined}>
+                <a className={pattern.test(asPath) ? 'is-active' : undefined}>
                   {label}
                 </a>
               </Link>

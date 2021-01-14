@@ -1,6 +1,6 @@
 export const getBlogLink = ({ type = 'blog', slug }) => {
   const types = {
-    blog: '/blog/',
+    blog: '/article/',
     page: '/',
   } as const
   return `${types[type]}${slug}`

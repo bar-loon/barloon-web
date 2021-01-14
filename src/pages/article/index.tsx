@@ -59,13 +59,16 @@ export default ({ posts = [], preview }) => {
           return (
             <div className={styles.root} key={post.Slug}>
               <h3>
-                <Link href="/blog/[slug]" as={getBlogLink({ slug: post.Slug })}>
-                  <div className={styles.title}>
+                <Link
+                  href="/article/[slug]"
+                  as={getBlogLink({ slug: post.Slug })}
+                >
+                  <a className={styles.title}>
                     {!post.Published && (
                       <span className={styles.draftBadge}>Draft</span>
                     )}
-                    <a>{post.Page}</a>
-                  </div>
+                    <span>{post.Page}</span>
+                  </a>
                 </Link>
               </h3>
               {post.Authors.length > 0 && (
@@ -77,7 +80,7 @@ export default ({ posts = [], preview }) => {
               {(post.preview || []).length > 0 && (
                 <p>
                   {post.preview.map((block, idx) =>
-                    textBlock(block, true, `${post.Sluc}${idx}`)
+                    textBlock(block, true, `${post.Slug}${idx}`)
                   )}
                 </p>
               )}

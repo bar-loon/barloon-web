@@ -8,13 +8,13 @@ import getNotionUsers from '../lib/notion/getNotionUsers'
 export async function getStaticProps({ preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex({ type: 'page' })
-  const post = postsTable['top']
+  const post = postsTable['about']
 
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /
   const isPublished = post.Published === 'Yes'
   if (!post || (!isPublished && !preview)) {
-    console.log(`Failed to find post for slug: top`)
+    console.log(`Failed to find post for slug: about`)
     return {
       props: {
         redirect: '/',
