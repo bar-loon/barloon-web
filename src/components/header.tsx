@@ -19,11 +19,10 @@ export default ({ className }) => {
       <Head>
         <meta
           name="description"
-          content="An example Next.js site using Notion for the blog"
+          content="Barloonはオンライン活動主体のエンジニアコミュニティです"
         />
         <meta name="og:title" content="Barloon" />
         <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:site" content="@_ijjk" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
