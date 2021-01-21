@@ -21,7 +21,6 @@ export default ({ className }) => {
           name="description"
           content="Barloonはオンライン活動主体のエンジニアコミュニティです"
         />
-        <meta property="og:title" content="Barloon" />
         <meta
           property="og:description"
           content="Barloonはオンライン活動主体のエンジニアコミュニティです"
