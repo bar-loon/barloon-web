@@ -6,5 +6,6 @@ export default ({ title = '' }) => (
       {title}
       {title && ' | '}Barloon
     </title>
+    <meta property="og:title" content={title} />
   </Head>
 )
