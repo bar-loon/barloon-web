@@ -22,6 +22,10 @@ export default ({ className }) => {
           content="Barloonはオンライン活動主体のエンジニアコミュニティです"
         />
         <meta property="og:title" content="Barloon" />
+        <meta
+          property="og:description"
+          content="Barloonはオンライン活動主体のエンジニアコミュニティです"
+        />
         <meta property="og:site_name" content="Barloon" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={ogImageUrl} />
