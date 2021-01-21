@@ -9,7 +9,7 @@ const navItems: { label: string; page: string; pattern: RegExp }[] = [
   { label: 'Article', page: '/article', pattern: /^\/article/ },
 ]
 
-const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
+const ogImageUrl = '/og-image.gif'
 
 export default ({ className }) => {
   const { asPath } = useRouter()
