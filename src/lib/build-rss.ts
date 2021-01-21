@@ -61,17 +61,17 @@ function createRSS(blogPosts = []) {
 
   return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>My Blog</title>
-    <subtitle>Blog</subtitle>
+    <title>Barloon</title>
+    <subtitle>Article</subtitle>
     <link href="/atom" rel="self" type="application/rss+xml"/>
     <link href="/" />
     <updated>${NOW}</updated>
-    <id>My Notion Blog</id>${postsString}
+    <id>Article</id>${postsString}
   </feed>`
 }
 
 async function main() {
-  const postsTable = await getBlogIndex(true)
+  const postsTable = await getBlogIndex({ previews: true })
   const neededAuthors = new Set<string>()
 
   const blogPosts = Object.keys(postsTable)

@@ -3,18 +3,19 @@ import Post from '../components/post'
 import getPageData from '../lib/notion/getPageData'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import getNotionUsers from '../lib/notion/getNotionUsers'
+import { getBlogLink } from '../lib/blog-helpers'
 
 // Get the data for each blog post
-export async function getStaticProps({ preview }) {
+export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex({ type: 'page' })
-  const post = postsTable['about']
+  const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /
   const isPublished = post.Published === 'Yes'
   if (!post || (!isPublished && !preview)) {
-    console.log(`Failed to find post for slug: about`)
+    console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
         redirect: '/',
@@ -57,6 +58,19 @@ export async function getStaticProps({ preview }) {
       preview: preview || false,
     },
     unstable_revalidate: 10,
+  }
+}
+
+// Return our list of blog posts to prerender
+export async function getStaticPaths() {
+  const postsTable = await getBlogIndex({ type: 'page' })
+  // we fallback for any unpublished posts to save build time
+  // for actually published ones
+  return {
+    paths: Object.keys(postsTable)
+      .filter(post => postsTable[post].Published === 'Yes')
+      .map(slug => getBlogLink({ type: 'page', slug })),
+    fallback: true,
   }
 }
 

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import ExtLink from './ext-link'
+import ExternalLink from './external-link'
 
 export default {
   // default tags
@@ -8,7 +8,7 @@ export default {
   li: 'li',
   p: 'p',
   blockquote: 'blockquote',
-  a: ExtLink,
+  a: ExternalLink,
 
   Code: dynamic(() => import('./code')),
   Counter: dynamic(() => import('./counter')),
