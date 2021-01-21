@@ -22,6 +22,8 @@ export default ({ className }) => {
           content="Barloonはオンライン活動主体のエンジニアコミュニティです"
         />
         <meta name="og:title" content="Barloon" />
+        <meta name="og:sitename" content="Barloon" />
+        <meta name="og:type" content="website" />
         <meta property="og:image" content={ogImageUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
