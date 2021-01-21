@@ -1,0 +1,15 @@
+.root {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.root .logo {
+  height: 28px;
+  width: auto;
+  margin-right: 4px;
+}
+
+.root .logoType {
+  height: 18px;
+  width: auto;
+}

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import BlogPost from '../../components/blog-post'
+import Post from '../../components/post'
 import getPageData from '../../lib/notion/getPageData'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
@@ -12,13 +12,13 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
+  // viewed without preview mode then we just redirect to /article
   const isPublished = post.Published === 'Yes'
   if (!post || (!isPublished && !preview)) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
       props: {
-        redirect: '/blog',
+        redirect: '/article',
         preview: false,
       },
       unstable_revalidate: 5,
@@ -74,4 +74,4 @@ export async function getStaticPaths() {
   }
 }
 
-export default BlogPost
+export default Post
