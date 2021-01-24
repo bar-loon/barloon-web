@@ -111,7 +111,7 @@ const renderBlocks = post => {
 
         const isImage = type === 'image'
         const Comp = isImage ? 'img' : 'video'
-        const useWrapper = block_aspect_ratio && !block_height
+        const useWrapper = Boolean(block_aspect_ratio)
         const childStyle: CSSProperties = useWrapper
           ? {
               width: '100%',
