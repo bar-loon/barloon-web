@@ -8,8 +8,7 @@ const navItems: { label: string; page: string; pattern: RegExp }[] = [
   { label: 'About', page: '/about', pattern: /^\/about$/ },
   { label: 'Article', page: '/article', pattern: /^\/article/ },
 ]
-const url = 'https://barloon.jp'
-const ogImageUrl = url + '/og-image.png'
+const ogImageUrl = 'https://barloon.jp/og-image.png'
 
 export default ({ className }) => {
   const { asPath } = useRouter()
@@ -25,7 +24,6 @@ export default ({ className }) => {
           property="og:description"
           content="Barloonはオンライン活動主体のエンジニアコミュニティです"
         />
-        <meta property="og:url" content={url}>
         <meta property="og:site_name" content="Barloon" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={ogImageUrl} />
