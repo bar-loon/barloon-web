@@ -53,6 +53,10 @@
   margin-top: 0;
 }
 
+.root :global(p) {
+  white-space: pre-wrap;
+}
+
 .root .authors,
 .root .date {
   margin: 0;
