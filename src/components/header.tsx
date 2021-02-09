@@ -10,7 +10,7 @@ const navItems: { label: string; page: string; pattern: RegExp }[] = [
 ]
 const ogImageUrl = 'https://barloon.jp/og-image.png'
 
-export default ({ className }) => {
+const Header = ({ className }) => {
   const { asPath } = useRouter()
 
   return (
@@ -51,3 +51,5 @@ export default ({ className }) => {
     </>
   )
 }
+
+export default Header

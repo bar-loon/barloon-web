@@ -282,7 +282,7 @@ const renderBlocks = post => {
   })
 }
 
-export default ({ post, redirect, preview }) => {
+const Post = ({ post, redirect, preview }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -346,3 +346,5 @@ export default ({ post, redirect, preview }) => {
     </>
   )
 }
+
+export default Post

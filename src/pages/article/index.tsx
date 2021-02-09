@@ -43,11 +43,11 @@ export async function getStaticProps({ preview }) {
       preview: preview || false,
       posts,
     },
-    unstable_revalidate: 10,
+    revalidate: 10,
   }
 }
 
-export default ({ posts = [], preview }) => {
+const Index = ({ posts = [], preview }) => {
   return (
     <>
       <Title title="Blog" />
@@ -91,3 +91,5 @@ export default ({ posts = [], preview }) => {
     </>
   )
 }
+
+export default Index
