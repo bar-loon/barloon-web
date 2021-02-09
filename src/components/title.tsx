@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default ({ title = '' }) => (
+const Title = ({ title = '' }) => (
   <Head>
     <title>
       {title}
@@ -9,3 +9,5 @@ export default ({ title = '' }) => (
     <meta property="og:title" content={title} />
   </Head>
 )
+
+export default Title
