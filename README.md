@@ -18,7 +18,7 @@ Notionにログインしたのち、開発者ツールから `token_v2` とい�
 
 ### \*_INDEX_ID
 
-- Notionの任意のページに付与されているIDを使用します。例えば、 https://www.notion.so/Blog-S5qv1QbUzM1wxm3H3SZRQkupi7XjXTul というページをNotion Blogで使うのであれば、 `S5qv1QbUzM1wxm3H3SZRQkupi7XjXTul` がIDになります。
+Notionの任意のページに付与されているIDを使用します。例えば、 https://www.notion.so/Blog-S5qv1QbUzM1wxm3H3SZRQkupi7XjXTul というページをNotion Blogで使うのであれば、 `S5qv1QbUzM1wxm3H3SZRQkupi7XjXTul` がIDになります。
 
 ## ローカルでの動かし方
 
