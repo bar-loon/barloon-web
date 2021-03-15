@@ -5,10 +5,12 @@ import Footer from '../components/footer'
 
 import styles from '../styles/app.module.css'
 
-export default ({ Component, pageProps }) => (
+const App = ({ Component, pageProps }) => (
   <div className={styles.container}>
     <Header className={styles.header} />
     <Component {...pageProps} />
     <Footer />
   </div>
 )
+
+export default App

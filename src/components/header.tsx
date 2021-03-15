@@ -8,10 +8,9 @@ const navItems: { label: string; page: string; pattern: RegExp }[] = [
   { label: 'About', page: '/about', pattern: /^\/about$/ },
   { label: 'Article', page: '/article', pattern: /^\/article/ },
 ]
+const ogImageUrl = 'https://barloon.jp/og-image.png'
 
-const ogImageUrl = '/og-image.gif'
-
-export default ({ className }) => {
+const Header = ({ className }) => {
   const { asPath } = useRouter()
 
   return (
@@ -52,3 +51,5 @@ export default ({ className }) => {
     </>
   )
 }
+
+export default Header
