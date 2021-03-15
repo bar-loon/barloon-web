@@ -38,7 +38,7 @@ export default async function getBlogIndex({
     try {
       const data = await rpc('loadPageChunk', {
         pageId: indexId,
-        limit: 999, // TODO: figure out Notion's way of handling pagination
+        limit: 100, // TODO: figure out Notion's way of handling pagination
         cursor: { stack: [] },
         chunkNumber: 0,
         verticalColumns: false,

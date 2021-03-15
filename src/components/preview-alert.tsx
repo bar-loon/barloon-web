@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import styles from '../styles/preview-alert.module.css'
 
-export default ({ slug = '' }) => (
+const PreviewAlert = ({ slug = '' }) => (
   <div className={styles.root}>
     <div className={styles.inner}>
       <b>Note:</b>
@@ -13,3 +13,5 @@ export default ({ slug = '' }) => (
     </div>
   </div>
 )
+
+export default PreviewAlert

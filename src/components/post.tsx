@@ -94,13 +94,14 @@ const renderBlocks = post => {
       case 'image':
       case 'video':
       case 'embed': {
-        const { format = {} } = value
         const {
-          block_width,
-          block_height,
-          display_source,
-          block_aspect_ratio,
-        } = format
+          format: {
+            block_width,
+            block_height,
+            display_source,
+            block_aspect_ratio,
+          },
+        } = value
         const baseBlockWidth = 768
         const roundFactor = Math.pow(10, 2)
         // calculate percentages
@@ -109,10 +110,13 @@ const renderBlocks = post => {
               roundFactor}%`
           : block_height || '100%'
 
-        const isImage = type === 'image'
-        const Comp = isImage ? 'img' : 'video'
-        const useWrapper = block_aspect_ratio && !block_height
-        const childStyle: CSSProperties = useWrapper
+        const useWrapper = Boolean(block_aspect_ratio)
+        const key = !useWrapper && id
+        const src = `/api/asset?assetUrl=${encodeURIComponent(
+          display_source
+        )}&blockId=${id}`
+        const className = useWrapper ? 'asset-wrapper' : undefined
+        const mediaStyle: CSSProperties = useWrapper
           ? {
               width: '100%',
               height: '100%',
@@ -128,51 +132,63 @@ const renderBlocks = post => {
               maxWidth: '100%',
             }
 
-        let child = null
-
-        if (!isImage && !value.file_ids) {
-          // external resource use iframe
-          child = (
+        const children = {
+          image: (
+            <img
+              key={key}
+              src={src}
+              alt="An image from Notion"
+              style={mediaStyle}
+            />
+          ),
+          video: (
+            <video
+              key={key}
+              src={src}
+              style={mediaStyle}
+              controls
+              loop
+              muted
+              autoPlay
+            />
+          ),
+          embed: (
             <iframe
-              style={childStyle}
-              src={display_source}
-              key={!useWrapper ? id : undefined}
-              className={!useWrapper ? 'asset-wrapper' : undefined}
+              key={key}
+              src={src}
+              className={className}
+              style={mediaStyle}
             />
-          )
-        } else {
-          // notion resource
-          child = (
-            <Comp
-              key={!useWrapper ? id : undefined}
-              src={`/api/asset?assetUrl=${encodeURIComponent(
-                display_source as any
-              )}&blockId=${id}`}
-              controls={!isImage}
-              alt={`An ${isImage ? 'image' : 'video'} from Notion`}
-              loop={!isImage}
-              muted={!isImage}
-              autoPlay={!isImage}
-              style={childStyle}
-            />
-          )
+          ),
+        }
+
+        const Media = ({
+          useWrapper,
+          children,
+        }: {
+          useWrapper: boolean
+          children: JSX.Element
+        }) => {
+          if (useWrapper)
+            return (
+              <div
+                style={{
+                  paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
+                  position: 'relative',
+                }}
+                className="asset-wrapper"
+                key={id}
+              >
+                {children}
+              </div>
+            )
+          return children
         }
 
         toRender.push(
-          useWrapper ? (
-            <div
-              style={{
-                paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
-                position: 'relative',
-              }}
-              className="asset-wrapper"
-              key={id}
-            >
-              {child}
-            </div>
-          ) : (
-            child
-          )
+          <Media useWrapper={useWrapper}>
+            {(value.file_ids && children[type]) || children.embed}
+          </Media>
         )
         break
       }
@@ -266,7 +282,7 @@ const renderBlocks = post => {
   })
 }
 
-export default ({ post, redirect, preview }) => {
+const Post = ({ post, redirect, preview }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -330,3 +346,5 @@ export default ({ post, redirect, preview }) => {
     </>
   )
 }
+
+export default Post
