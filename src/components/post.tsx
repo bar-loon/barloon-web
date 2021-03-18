@@ -9,7 +9,7 @@ import { textBlock } from '../lib/notion/renderers'
 import React, { CSSProperties, useEffect } from 'react'
 import { getDateStr } from '../lib/blog-helpers'
 
-const renderBlocks = post => {
+const renderBlocks = (post) => {
   const listTypes = {
     bulleted_list: 'ul',
     numbered_list: 'ol',
@@ -50,12 +50,12 @@ const renderBlocks = post => {
         React.createElement(
           components[listItems[listItemIds[0]].listTagName],
           { key: listItemIds[listItemIds.length - 1] },
-          listItemIds.map(listItemId => {
+          listItemIds.map((listItemId) => {
             const item = listItems[listItemId]
             delete listItems[listItemId]
             if (item.isNested) return null
 
-            const createEl = item =>
+            const createEl = (item) =>
               React.createElement(
                 components.li,
                 { key: item.id },
@@ -64,7 +64,7 @@ const renderBlocks = post => {
                   ? React.createElement(
                       components[listItems[item.nestIds[0]].listTagName],
                       { key: `sub-list${item.id}` },
-                      item.nestIds.map(nestId => createEl(listItems[nestId]))
+                      item.nestIds.map((nestId) => createEl(listItems[nestId]))
                     )
                   : null
               )
@@ -79,6 +79,45 @@ const renderBlocks = post => {
         <Heading key={id}>
           <Type key={id}>{textBlock(properties.title, true, id)}</Type>
         </Heading>
+      )
+    }
+
+    const renderBookmark = ({ link, title, description, format }) => {
+      const { bookmark_icon: icon, bookmark_cover: cover } = format
+      console.debug(JSON.stringify(cover))
+      toRender.push(
+        <div className={styles.bookmark}>
+          <div>
+            <div style={{ display: 'flex' }}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.bookmarkContentsWrapper}
+                href={link}
+              >
+                <div role="button" className={styles.bookmarkContents}>
+                  <div className={styles.bookmarkInfo}>
+                    <div className={styles.bookmarkTitle}>{title}</div>
+                    <div className={styles.bookmarkDescription}>
+                      {description}
+                    </div>
+                    <div className={styles.bookmarkLinkWrapper}>
+                      <img src={icon} className={styles.bookmarkLinkIcon} />
+                      <div className={styles.bookmarkLink}>{link}</div>
+                    </div>
+                  </div>
+                  <div className={styles.bookmarkCoverWrapper1}>
+                    <div className={styles.bookmarkCoverWrapper2}>
+                      <div className={styles.bookmarkCoverWrapper3}>
+                        <img src={cover} className={styles.bookmarkCover} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
       )
     }
 
@@ -106,8 +145,10 @@ const renderBlocks = post => {
         const roundFactor = Math.pow(10, 2)
         // calculate percentages
         const width = block_width
-          ? `${Math.round((block_width / baseBlockWidth) * 100 * roundFactor) /
-              roundFactor}%`
+          ? `${
+              Math.round((block_width / baseBlockWidth) * 100 * roundFactor) /
+              roundFactor
+            }%`
           : block_height || '100%'
 
         const useWrapper = Boolean(block_aspect_ratio)
@@ -200,6 +241,11 @@ const renderBlocks = post => {
         break
       case 'sub_sub_header':
         renderHeading('h3')
+        break
+      case 'bookmark':
+        const { link, title, description } = properties
+        const { format = {} } = value
+        renderBookmark({ link, title, description, format })
         break
       case 'code': {
         if (properties.title) {

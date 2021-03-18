@@ -5,7 +5,6 @@
 }
 
 .logo {
-  padding-bottom: 10px;
   line-height: 1;
 }
 
@@ -26,8 +25,6 @@
   color: inherit;
   font-weight: bold;
   padding-top: 10px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid transparent;
 }
 
 .navItems li a:global(.is-active) {
