@@ -4,10 +4,6 @@ import Logo from './logo'
 import { useRouter } from 'next/router'
 import styles from '../styles/header.module.css'
 
-const navItems: { label: string; page: string; pattern: RegExp }[] = [
-  { label: 'About', page: '/about', pattern: /^\/about$/ },
-  { label: 'Article', page: '/article', pattern: /^\/article/ },
-]
 const ogImageUrl = 'https://barloon.jp/og-image.png'
 
 const Header = ({ className }) => {
@@ -36,17 +32,6 @@ const Header = ({ className }) => {
             <Logo />
           </a>
         </Link>
-        <ul className={styles.navItems}>
-          {navItems.map(({ label, page, pattern }) => (
-            <li key={label}>
-              <Link href={page}>
-                <a className={pattern.test(asPath) ? 'is-active' : undefined}>
-                  {label}
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </header>
     </>
   )
