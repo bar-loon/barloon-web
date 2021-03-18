@@ -1,18 +1,10 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import Logo from './logo'
-import { useRouter } from 'next/router'
-import styles from '../styles/header.module.css'
 
-const navItems: { label: string; page: string; pattern: RegExp }[] = [
-  { label: 'About', page: '/about', pattern: /^\/about$/ },
-  { label: 'Article', page: '/article', pattern: /^\/article/ },
-]
 const ogImageUrl = 'https://barloon.jp/og-image.png'
 
 const Header = ({ className }) => {
-  const { asPath } = useRouter()
-
   return (
     <>
       <Head>
@@ -30,23 +22,12 @@ const Header = ({ className }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
-      <header className={`${styles.root} ${className}`}>
+      <header className={className}>
         <Link href="/">
-          <a className={styles.logo}>
+          <a>
             <Logo />
           </a>
         </Link>
-        <ul className={styles.navItems}>
-          {navItems.map(({ label, page, pattern }) => (
-            <li key={label}>
-              <Link href={page}>
-                <a className={pattern.test(asPath) ? 'is-active' : undefined}>
-                  {label}
-                </a>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </header>
     </>
   )
