@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import Logo from './logo'
-import styles from '../styles/header.module.css'
 
 const ogImageUrl = 'https://barloon.jp/og-image.png'
 
@@ -25,7 +24,7 @@ const Header = ({ className }) => {
       </Head>
       <header className={className}>
         <Link href="/">
-          <a className={styles.logo}>
+          <a>
             <Logo />
           </a>
         </Link>
