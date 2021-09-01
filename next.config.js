@@ -57,4 +57,7 @@ module.exports = {
     }
     return cfg
   },
+  images: {
+    domains: ['www.notion.so']
+  }
 }

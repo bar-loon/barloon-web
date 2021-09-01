@@ -1,9 +1,7 @@
-import styles from '../styles/logo.module.css'
+import Image from 'next/image'
 
 const Logo = () => (
-  <div className={styles.root}>
-    <img className={styles.logo} src="/logo.png" />
-  </div>
+  <Image src="/logo.png" alt="Logo" height={27.25} width={125.125} />
 )
 
 export default Logo
