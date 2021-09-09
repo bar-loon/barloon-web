@@ -38,7 +38,7 @@ const renderBlocks = (post) => {
         listTagName: components[listTypes[type]],
         isNested: Boolean(listItems[parent_id]),
         nestIds: [],
-        children: textBlock(properties.title, true, id),
+        children: textBlock(properties?.title, true, id),
       }
 
       if (listItems[id].isNested) {
