@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Title from './title'
 import PreviewAlert from './preview-alert'
 import Heading from './heading'
@@ -84,7 +85,6 @@ const renderBlocks = (post) => {
 
     const renderBookmark = ({ link, title, description, format }) => {
       const { bookmark_icon: icon, bookmark_cover: cover } = format
-      console.debug(JSON.stringify(cover))
       toRender.push(
         <div className={styles.bookmark}>
           <div>
@@ -102,17 +102,33 @@ const renderBlocks = (post) => {
                       {description}
                     </div>
                     <div className={styles.bookmarkLinkWrapper}>
-                      <img src={icon} className={styles.bookmarkLinkIcon} />
+                      {icon && (
+                        <div className={styles.bookmarkLinkIcon}>
+                          <Image
+                            src={`https://www.notion.so/image/${encodeURIComponent(
+                              icon
+                            )}`}
+                            alt="Bookmark"
+                            width={16}
+                            height={16}
+                          />
+                        </div>
+                      )}
                       <div className={styles.bookmarkLink}>{link}</div>
                     </div>
                   </div>
-                  <div className={styles.bookmarkCoverWrapper1}>
-                    <div className={styles.bookmarkCoverWrapper2}>
-                      <div className={styles.bookmarkCoverWrapper3}>
-                        <img src={cover} className={styles.bookmarkCover} />
-                      </div>
+                  {cover && (
+                    <div className={styles.bookmarkCover}>
+                      <Image
+                        src={`https://www.notion.so/image/${encodeURIComponent(
+                          cover
+                        )}`}
+                        alt="Cover"
+                        layout="fill"
+                        objectFit="cover"
+                      />
                     </div>
-                  </div>
+                  )}
                 </div>
               </a>
             </div>
@@ -345,12 +361,12 @@ const Post = ({ post, redirect, preview }) => {
         document.querySelector('body').appendChild(script)
       }
     }
-  }, [])
+  }, [post])
   useEffect(() => {
     if (redirect && !post) {
       router.replace(redirect)
     }
-  }, [redirect, post])
+  }, [redirect, post, router])
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -364,7 +380,9 @@ const Post = ({ post, redirect, preview }) => {
     return (
       <div className={styles.root}>
         <p>
-          Woops! didn't find that post, redirecting you back to the blog index
+          {
+            "Woops! didn't find that post, redirecting you back to the blog index"
+          }
         </p>
       </div>
     )

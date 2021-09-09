@@ -133,13 +133,8 @@
 
 .bookmarkLinkWrapper {
   display: flex;
+  align-items: center;
   margin-top: 6px;
-}
-
-.bookmarkLinkIcon {
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
 }
 
 .bookmarkLink {
@@ -148,36 +143,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 6px;
 }
 
-.bookmarkCoverWrapper1 {
-  flex: 1 1 180px;
-  display: block;
-  position: relative;
-}
-
-.bookmarkCoverWrapper2 {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  padding: 0;
-  background-color: #ff0000;
-}
-
-.bookmarkCoverWrapper3 {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
+.bookmarkLinkIcon {
+  margin-right: 6px;
 }
 
 .bookmarkCover {
-  display: block;
-  object-fit: cover;
-  border-radius: 1px;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  position: relative;
 }

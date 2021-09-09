@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const ClearPreview = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.query.slug) {
     res.clearPreviewData()
     res.writeHead(307, { Location: `/article/${req.query.slug}` })
@@ -11,3 +11,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     res.end()
   }
 }
+
+export default ClearPreview
