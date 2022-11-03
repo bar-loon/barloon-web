@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build && node .next/server/scripts/build-rss.js",
-    "build:rss": "node ./.next/serverless/scripts/build-rss.js",
+    "build": "next build",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore",
     "lint": "next lint",
     "lint-staged": "lint-staged"

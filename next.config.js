@@ -12,8 +12,7 @@ try {
 }
 try {
   fs.unlinkSync(path.resolve('.blog_index_data_previews'))
-} catch (_) {
-  /* non fatal */
+} catch (_) { /* non fatal */
 }
 
 const warnOrError =
@@ -42,21 +41,6 @@ if (!BLOG_INDEX_ID) {
 }
 
 module.exports = {
-  webpack(cfg, { dev, isServer }) {
-    // only compile build-rss in production server build
-    if (dev || !isServer) return cfg
-
-    // we're in build mode so enable shared caching for Notion data
-    process.env.USE_CACHE = 'true'
-
-    const originalEntry = cfg.entry
-    cfg.entry = async () => {
-      const entries = { ...(await originalEntry()) }
-      entries['./scripts/build-rss.js'] = './src/lib/build-rss.ts'
-      return entries
-    }
-    return cfg
-  },
   images: {
     domains: ['www.notion.so']
   }
